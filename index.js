@@ -11,7 +11,7 @@ function promptUser() {
             type: "input",
             name: "github",
             message: "Enter your GitHub Username",
-        }
+        },
         {
             type: "input",
             name: "title",
@@ -25,35 +25,36 @@ function promptUser() {
         {
             type: "input",
             name: "installation",
-            message: "?"
+            message: "What dependencies did you install?",
         },
         {
             type: "input",
             name: "usage",
-            message: "What is your project going to be used for?"
-        }
+            message: "What is your project going to be used for?",
+        },
         {
             type: "input",
             name: "license",
-            choices: "What license is your project under?"
+            choices: "What license is your project under?",
         },
         {
             type: "input",
             name: "contributing",
-            message: "Enter your LinkedIn URL."
+            message: "Who contributed to this project?",
         },
         {
             type: "input",
             name: "tests",
-            message: "Enter your LinkedIn URL."
+            message: "What future tests will you run?",
         }
     ]);
 }
 
 function generateREADME(answers) {
-    return ``
-#Project Name
-{answers.name}
+
+    return `
+#Project Title
+{answers.title}
 
 #Description 
 ${answers.description}
@@ -79,9 +80,9 @@ $(answers.contributing)
 $(answers.tests)
 
 ##Questions
-* My Email: ${response.data.email}
+* My Github Email: ${response.data.email}
 ![Profile Image](${response.data.avatar_url})
-
+`;
 }
 
 promptUser()
@@ -96,4 +97,3 @@ promptUser()
     .catch(function (err) {
         console.log(err);
     });
-
