@@ -1,7 +1,7 @@
 const inquirer = require("inquirer");
+const axios = require("axios");
 const fs = require("fs");
 const util = require("util");
-
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -9,39 +9,79 @@ function promptUser() {
     return inquirer.prompt([
         {
             type: "input",
+            name: "github",
+            message: "Enter your GitHub Username",
+        }
+        {
+            type: "input",
             name: "title",
             message: "What is the title of your project?"
         },
         {
-            type: "input",
+            type: "text",
             name: "description",
             message: "Describe the project."
         },
         {
             type: "input",
             name: "installation",
-            message: "What is your favorite hobby?"
+            message: "?"
         },
         {
             type: "input",
-            name: "food",
-            message: "What is your favorite food?"
+            name: "usage",
+            message: "What is your project going to be used for?"
+        }
+        {
+            type: "input",
+            name: "license",
+            choices: "What license is your project under?"
         },
         {
             type: "input",
-            name: "github",
-            message: "Enter your GitHub Username"
+            name: "contributing",
+            message: "Enter your LinkedIn URL."
         },
         {
             type: "input",
-            name: "linkedin",
+            name: "tests",
             message: "Enter your LinkedIn URL."
         }
     ]);
 }
 
 function generateREADME(answers) {
-    return 
+    return ``
+#Project Name
+{answers.name}
+
+#Description 
+${answers.description}
+
+##Table of contents
+* [Installation] (#installation)
+* [Usage] (#usage)
+* [License] (#license)
+* [Contributing] (#contributing)
+* [Tests] (#tests)
+* [Questions] [#questions]
+
+#Installation
+$(answers.installation)
+
+##License
+$(answers.license)
+
+##Contributing
+$(answers.contributing)
+
+##Tests
+$(answers.tests)
+
+##Questions
+* My Email: ${response.data.email}
+![Profile Image](${response.data.avatar_url})
+
 }
 
 promptUser()
